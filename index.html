@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,7 +115,7 @@
             border-color: var(--text-secondary);
         }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVIGATION & HAMBURGER --- */
         nav {
             position: fixed;
             top: 0;
@@ -146,7 +145,8 @@
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 24px;
+            align-items: center;
         }
 
         .nav-links a {
@@ -154,11 +154,42 @@
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
-            font-size: 0.95rem;
+            font-size: 0.92rem;
         }
 
         .nav-links a:hover {
             color: var(--accent-gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 4px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+            background-color: var(--accent-gold);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+            background-color: var(--accent-gold);
         }
 
         /* --- HERO SECTION --- */
@@ -227,17 +258,7 @@
             transition: var(--transition);
         }
 
-        .profile-img-container:hover .profile-img {
-            transform: scale(1.03);
-        }
-
         /* --- ABOUT ME --- */
-        .about-wrapper {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-        }
-
         .about-text {
             font-size: 1.15rem;
             color: var(--text-secondary);
@@ -290,6 +311,72 @@
             font-weight: bold;
         }
 
+        /* --- CURRENT STATUS SECTION --- */
+        .status-visuals-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .status-visual-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #070a10;
+        }
+
+        .status-visual-card img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        /* --- SOCIAL DASHBOARDS SECTION --- */
+        .dashboards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .dashboard-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .dashboard-box h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            color: var(--accent-gold);
+        }
+
+        .dashboard-img-wrapper {
+            width: 100%;
+            height: 420px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #070a10;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dashboard-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
         /* --- PORTFOLIO GRID --- */
         .portfolio-grid {
             display: grid;
@@ -317,7 +404,7 @@
         .thumbnail-wrapper {
             position: relative;
             width: 100%;
-            aspect-ratio: 9 / 16; /* Fixed constraint matching short-form reels portrait format */
+            aspect-ratio: 9 / 16;
             overflow: hidden;
             background-color: #000;
             border-bottom: 1px solid var(--border-color);
@@ -331,12 +418,8 @@
             transition: var(--transition);
         }
 
-        .project-card:hover .project-thumbnail {
-            transform: scale(1.05);
-        }
-
         .project-content {
-            padding: 28px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -358,37 +441,31 @@
 
         .project-title {
             font-family: var(--font-display);
-            font-size: 1.4rem;
-            margin-bottom: 14px;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
             font-weight: 700;
             line-height: 1.2;
-            transition: var(--transition);
-        }
-
-        .project-title-link:hover .project-title {
-            color: var(--accent-gold);
         }
 
         .project-desc {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
             flex-grow: 1;
         }
 
         .project-role-container {
-            margin-bottom: 24px;
-            padding-top: 16px;
+            margin-bottom: 20px;
+            padding-top: 14px;
             border-top: 1px solid rgba(255,255,255,0.05);
         }
 
         .role-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             color: var(--text-primary);
             font-weight: 600;
             margin-bottom: 8px;
-            letter-spacing: 0.02em;
         }
 
         .role-tags {
@@ -400,8 +477,8 @@
         .role-tag {
             background-color: rgba(255, 255, 255, 0.05);
             color: var(--text-secondary);
-            font-size: 0.78rem;
-            padding: 4px 10px;
+            font-size: 0.75rem;
+            padding: 4px 8px;
             border-radius: 4px;
             border: 1px solid var(--border-color);
         }
@@ -411,7 +488,7 @@
             text-align: center;
         }
 
-        /* --- EXPERIENCE TIMELINE --- */
+        /* --- EXPERIENCE --- */
         .timeline {
             max-width: 800px;
         }
@@ -431,7 +508,6 @@
             height: 12px;
             border-radius: 50%;
             background-color: var(--accent-gold);
-            z-index: 2;
         }
 
         .timeline-item::after {
@@ -442,15 +518,10 @@
             width: 2px;
             height: 100%;
             background-color: var(--border-color);
-            z-index: 1;
         }
 
         .timeline-item:last-child::after {
             display: none;
-        }
-
-        .timeline-header {
-            margin-bottom: 12px;
         }
 
         .timeline-role {
@@ -462,19 +533,6 @@
         .timeline-company {
             color: var(--accent-gold);
             font-weight: 600;
-            font-size: 1.05rem;
-            margin-bottom: 4px;
-        }
-
-        .timeline-date {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .timeline-body {
-            color: var(--text-secondary);
         }
 
         .timeline-body ul {
@@ -487,6 +545,7 @@
             position: relative;
             padding-left: 20px;
             font-size: 0.95rem;
+            color: var(--text-secondary);
         }
 
         .timeline-body li::before {
@@ -515,63 +574,19 @@
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--accent-gold);
-            margin-bottom: 8px;
-            line-height: 1;
         }
 
-        .achievement-text {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* --- CONTACT SECTION --- */
+        /* --- CONTACT --- */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 64px;
         }
 
-        .contact-info-panel h3 {
-            font-family: var(--font-display);
-            font-size: 1.75rem;
-            margin-bottom: 16px;
-        }
-
-        .contact-p {
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-            font-size: 1.05rem;
-        }
-
         .contact-details {
             display: flex;
             flex-direction: column;
             gap: 20px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .contact-label {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .contact-value a, .contact-value span {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: var(--transition);
-        }
-
-        .contact-value a:hover {
-            color: var(--accent-gold);
         }
 
         /* --- RESPONSIVE DESIGN --- */
@@ -596,11 +611,66 @@
                 grid-template-columns: 1fr;
                 gap: 48px;
             }
-            .section-title {
-                font-size: 2rem;
+
+            .menu-toggle {
+                display: flex;
             }
             .nav-links {
-                display: none; /* Can be enhanced with mobile menu burger toggle */
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--bg-card);
+                border-left: 1px solid var(--border-color);
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                padding: 40px;
+                transition: var(--transition);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .dashboards-grid {
+                grid-template-columns: 1fr;
+            }
+            .dashboard-img-wrapper {
+                height: 320px;
+            }
+            .status-visuals-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .status-visual-card {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .project-content {
+                padding: 12px;
+            }
+            .project-title {
+                font-size: 0.95rem;
+                margin-bottom: 6px;
+            }
+            .project-category {
+                font-size: 0.65rem;
+                margin-bottom: 4px;
+            }
+            .project-desc, .project-role-container {
+                display: none;
+            }
+            .btn-project {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                border-radius: 4px;
             }
         }
 
@@ -611,24 +681,30 @@
             .hero-buttons {
                 flex-direction: column;
             }
-            section {
-                padding: 60px 0;
-            }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAV BAR -->
+    <!-- NAVIGATION SYSTEM WITH LINKS TARGET OPTIMIZATION -->
     <nav>
         <div class="container nav-container">
             <a href="#" class="logo">AG<span class="accent-text">.</span></a>
-            <div class="nav-links">
+            
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="nav-links-container">
+                <a href="#hero">Portfolio</a> <!-- Clicking here takes to top/main start layout -->
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
-                <a href="#portfolio">Portfolio</a>
+                <a href="#my-work">My Work</a>
+                <a href="#current-status">Current Status</a>
+                <a href="#social-dashboards">Dashboards</a>
                 <a href="#experience">Experience</a>
-                <a href="#achievements">Achievements</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
@@ -641,15 +717,14 @@
                 <div>
                     <span class="hero-tag">Available for Full-Time & Freelance Roles</span>
                     <h1 class="hero-title">Ajay Gupta</h1>
-                    <p class="hero-desc">Instagram Content Creator, Video Editor, and Social Media Influencer specialized in producing high-impact, end-to-end short-form video architectures that drive deep audience trust and verified civic engagement.</p>
+                    <p class="hero-desc">Instagram Content Creator, Video Editor, and Social Media Influencer specialized in producing high-impact, end-to-end short-form video architectures that drive deep audience trust and verified civic engagement[cite: 1].</p>
                     <div class="hero-buttons">
-                        <a href="#portfolio" class="btn-primary">View Portfolio Projects</a>
+                        <a href="#my-work" class="btn-primary">View Portfolio Projects</a>
                         <a href="#contact" class="btn-secondary">Let's Collaborate</a>
                     </div>
                 </div>
                 <div class="hero-img-box">
                     <div class="profile-img-container">
-                        <!-- Profile photograph embedded directly via exact source filename requirement -->
                         <img src="images/1000263988.jpg" alt="Ajay Gupta Profile Photo" class="profile-img">
                     </div>
                 </div>
@@ -663,8 +738,8 @@
             <h2 class="section-title">About <span class="accent-text">Me</span></h2>
             <div class="about-wrapper">
                 <div class="about-text">
-                    <p style="margin-bottom: 20px;">I am a creative and self-driven Instagram Content Creator with proven experience engineering original, high-engagement visual storytelling frameworks across demanding global genres including Economics, Politics, Cricket, Technology, and Critical Social Issues.</p>
-                    <p>Operating with zero external outsourcing dependencies, I own the entire production pipeline. Every piece of work is conceptualized, researched, scripted, and edited by me, presenting an authentic on-camera aesthetic backed by my own face and voice to maximize brand equity and platform trust metrics.</p>
+                    <p style="margin-bottom: 20px;">I am a creative and self-driven Instagram Content Creator with proven experience engineering original, high-engagement visual storytelling frameworks across demanding global genres including Economics, Politics, Cricket, Technology, and Critical Social Issues[cite: 1].</p>
+                    <p>Operating with zero external outsourcing dependencies, I own the entire production pipeline[cite: 1]. Every piece of work is conceptualized, researched, scripted, and edited by me, presenting an authentic on-camera aesthetic backed by my own face and voice to maximize brand equity and platform trust metrics[cite: 1].</p>
                 </div>
             </div>
         </div>
@@ -678,171 +753,198 @@
                 <div class="skill-card">
                     <h3 class="skill-title">Video Architecture</h3>
                     <ul class="skill-list">
-                        <li>Short-Form Video Production</li>
-                        <li>Reels Editing & Publishing</li>
-                        <li>Self-Filming & Production Setup</li>
-                        <li>Transitions & Color Correction</li>
-                        <li>Music Syncing & Engineering</li>
-                        <li>Voice-Over & Subtitle Integration</li>
+                        <li>Short-Form Video Production[cite: 1]</li>
+                        <li>Reels Editing & Publishing[cite: 1]</li>
+                        <li>Self-Filming & Production Setup[cite: 1]</li>
+                        <li>Transitions & Color Correction[cite: 1]</li>
+                        <li>Music Syncing & Engineering[cite: 1]</li>
+                        <li>Voice-Over & Subtitle Integration[cite: 1]</li>
                     </ul>
                 </div>
                 <div class="skill-card">
                     <h3 class="skill-title">Strategy & Growth</h3>
                     <ul class="skill-list">
-                        <li>Trend Research & Tracking</li>
-                        <li>Content Pipeline Ideation</li>
-                        <li>Breaking News Extraction</li>
-                        <li>Social Media Optimization</li>
-                        <li>Audience Engagement Mechanics</li>
-                        <li>Targeted Niche Expansion</li>
+                        <li>Trend Research & Tracking[cite: 1]</li>
+                        <li>Content Pipeline Ideation[cite: 1]</li>
+                        <li>Breaking News Extraction[cite: 1]</li>
+                        <li>Social Media Optimization[cite: 1]</li>
+                        <li>Audience Engagement Mechanics[cite: 1]</li>
+                        <li>Targeted Niche Expansion[cite: 1]</li>
                     </ul>
                 </div>
                 <div class="skill-card">
                     <h3 class="skill-title">Technical Ecosystem</h3>
                     <ul class="skill-list">
-                        <li>CapCut Studio</li>
-                        <li>VN (Video & Notes) Editor</li>
-                        <li>Instagram Advanced Publishing</li>
-                        <li>Fact Verification Protocols</li>
-                        <li>Thumbnail Layout Design</li>
+                        <li>CapCut Studio[cite: 1]</li>
+                        <li>VN (Video & Notes) Editor[cite: 1]</li>
+                        <li>Instagram Advanced Publishing[cite: 1]</li>
+                        <li>Fact Verification Protocols[cite: 1]</li>
+                        <li>Thumbnail Layout Design[cite: 1]</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PORTFOLIO SECTION -->
-    <section id="portfolio">
+    <!-- CURRENT STATUS SECTION -->
+    <section id="current-status">
         <div class="container">
-            <h2 class="section-title">Portfolio <span class="accent-text">Grid</span></h2>
+            <h2 class="section-title">Current <span class="accent-text">Status</span></h2>
+            <div class="status-visuals-grid">
+                <div class="status-visual-card"><img src="images/instagram dashboard.jpeg" alt="Instagram Live Status Insights"></div>
+                <div class="status-visual-card"><img src="images/ikka real insights.jpeg" alt="IKKA Content Metrics Node"></div>
+                <div class="status-visual-card"><img src="images/virat real insights.jpeg" alt="Virat Target Metrics Node"></div>
+                <div class="status-visual-card"><img src="images/pasu asharay real insights.jpeg" alt="Social Campaign Metrics Node"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL DASHBOARDS SECTION -->
+    <section id="social-dashboards">
+        <div class="container">
+            <h2 class="section-title">Social <span class="accent-text">Dashboards</span></h2>
+            <div class="dashboards-grid">
+                <div class="dashboard-box" id="instagram-dashboard">
+                    <h3>Instagram Profile Monitor</h3>
+                    <div class="dashboard-img-wrapper">
+                        <img src="images/instagram profile.jpeg" alt="Instagram Core Account Analytics" class="dashboard-img">
+                    </div>
+                </div>
+                <div class="dashboard-box" id="youtube-dashboard">
+                    <h3>YouTube Studio Hub</h3>
+                    <div class="dashboard-img-wrapper">
+                        <img src="images/youtube dashboard .jpeg" alt="YouTube Broadcast Station Metrics" class="dashboard-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MY WORK PORTFOLIO GRID -->
+    <section id="portfolio">
+        <div class="container" id="my-work">
+            <h2 class="section-title">My <span class="accent-text">Work</span></h2> <!-- Headline has been parsed strictly as requested -->
             <div class="portfolio-grid">
                 
                 <!-- Project 1 -->
                 <div class="project-card">
                     <a href="https://www.instagram.com/reel/DZsRY9CSnyW/?igsh=MWo5YmppaHJrbGMzOA==" target="_blank" class="thumbnail-wrapper">
-                        <img src="images/1000263997.jpg" alt="Bike Driver Story Thumbnail" class="project-thumbnail">
+                        <img src="images/passport citizenship.png" alt="Passport vs Citizenship Thumbnail" class="project-thumbnail">
                     </a>
                     <div class="project-content">
-                        <span class="project-category">Social Awareness</span>
+                        <span class="project-category">News Explainer / Political Content</span>
                         <a href="https://www.instagram.com/reel/DZsRY9CSnyW/?igsh=MWo5YmppaHJrbGMzOA==" target="_blank" class="project-title-link">
-                            <h3 class="project-title">Bike Driver Story</h3>
+                            <h3 class="project-title">Passport vs Citizenship – MEA Clarification Explained</h3>
                         </a>
-                        <p class="project-desc">Created a short-form video covering a real-life incident where a biker stopped a bus after noticing it was traveling on the wrong route. The video focused on public safety, civic responsibility, and the impact of one person's awareness in preventing potential issues.</p>
+                        <p class="project-desc">Designed a high-impact YouTube news thumbnail explaining the distinction between passport and citizenship. Focused on bold typography, visual hierarchy, and attention-grabbing composition to maximize CTR while maintaining a professional news aesthetic.</p>
                         <div class="project-role-container">
                             <div class="role-label">Roles Executed:</div>
                             <div class="role-tags">
-                                <span class="role-tag">Content Research</span>
-                                <span class="role-tag">Script Writing</span>
-                                <span class="role-tag">Video Editing</span>
-                                <span class="role-tag">Thumbnail Design</span>
-                                <span class="role-tag">Storytelling</span>
+                                <span class="role-tag">Thumbnail Designer</span>
+                                <span class="role-tag">Visual Concept Creator</span>
+                                <span class="role-tag">Typography & Photo Manipulation</span>
                             </div>
                         </div>
-                        <a href="https://www.instagram.com/reel/DZsRY9CSnyW/?igsh=MWo5YmppaHJrbGMzOA==" target="_blank" class="btn-primary btn-project">Watch Project</a>
+                        <a href="https://www.instagram.com/reel/DZsRY9CSnyW/?igsh=MWo5YmppaHJrbGMzOA==" target="_blank" class="btn-primary btn-project">Watch</a>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
                 <div class="project-card">
                     <a href="https://www.instagram.com/reel/DY037x7yQST/?igsh=YWpwNHlyaDZsZTBj" target="_blank" class="thumbnail-wrapper">
-                        <img src="images/1000263999.jpg" alt="Gurindervir Singh Achievement Thumbnail" class="project-thumbnail">
+                        <img src="images/jaishankar.jpeg" alt="Jaishankar Response Thumbnail" class="project-thumbnail">
                     </a>
                     <div class="project-content">
-                        <span class="project-category">Sports News / Athlete Success</span>
+                        <span class="project-category">Geopolitics / Current Affairs</span>
                         <a href="https://www.instagram.com/reel/DY037x7yQST/?igsh=YWpwNHlyaDZsZTBj" target="_blank" class="project-title-link">
-                            <h3 class="project-title">Gurindervir Singh Achievement</h3>
+                            <h3 class="project-title">Jaishankar's Diplomatic Response to Europe</h3>
                         </a>
-                        <p class="project-desc">Produced a short-form video highlighting the achievement of Indian sprinter Gurindervir Singh and his record-breaking performance. Designed to inform and inspire viewers through concise storytelling.</p>
+                        <p class="project-desc">Created a visually engaging thumbnail highlighting India's diplomatic stance with cinematic composition, bold headlines, and strategic color contrast to improve viewer engagement.</p>
                         <div class="project-role-container">
                             <div class="role-label">Roles Executed:</div>
                             <div class="role-tags">
-                                <span class="role-tag">Research</span>
-                                <span class="role-tag">Script Writing</span>
-                                <span class="role-tag">Video Editing</span>
-                                <span class="role-tag">Thumbnail Design</span>
+                                <span class="role-tag">Thumbnail Designer</span>
+                                <span class="role-tag">Layout Design</span>
+                                <span class="role-tag">Visual Storytelling</span>
                             </div>
                         </div>
-                        <a href="https://www.instagram.com/reel/DY037x7yQST/?igsh=YWpwNHlyaDZsZTBj" target="_blank" class="btn-primary btn-project">Watch Project</a>
+                        <a href="https://www.instagram.com/reel/DY037x7yQST/?igsh=YWpwNHlyaDZsZTBj" target="_blank" class="btn-primary btn-project">Watch</a>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
                 <div class="project-card">
                     <a href="https://www.instagram.com/reel/DYC7ioSyjci/?igsh=M3V2dmwwdjFpMXVh" target="_blank" class="thumbnail-wrapper">
-                        <img src="images/1000264006.jpg" alt="Nishulk Pashu Chikitsa Shivir Thumbnail" class="project-thumbnail">
+                        <img src="images/ikka.png" alt="IKKA Netflix Thumbnail" class="project-thumbnail">
                     </a>
                     <div class="project-content">
-                        <span class="project-category">Social Welfare / Rural / Livestock</span>
+                        <span class="project-category">Entertainment / Movie Review</span>
                         <a href="https://www.instagram.com/reel/DYC7ioSyjci/?igsh=M3V2dmwwdjFpMXVh" target="_blank" class="project-title-link">
-                            <h3 class="project-title">Nishulk Pashu Chikitsa Shivir</h3>
+                            <h3 class="project-title">IKKA – Netflix First Look Review</h3>
                         </a>
-                        <p class="project-desc">Created a short-form informative video covering a free animal healthcare camp organized for livestock owners. The content highlighted veterinary services, animal health awareness, and the importance of supporting rural communities through livestock care initiatives.</p>
+                        <p class="project-desc">Designed a cinematic thumbnail for a Netflix series review by combining character visuals, dramatic lighting, and bold typography to create an impactful first impression.</p>
                         <div class="project-role-container">
                             <div class="role-label">Roles Executed:</div>
                             <div class="role-tags">
-                                <span class="role-tag">Content Research</span>
-                                <span class="role-tag">Script Writing</span>
-                                <span class="role-tag">Video Editing</span>
-                                <span class="role-tag">Thumbnail Design</span>
-                                <span class="role-tag">Storytelling</span>
+                                <span class="role-tag">Thumbnail Designer</span>
+                                <span class="role-tag">Poster Composition</span>
+                                <span class="role-tag">Image Editing</span>
                             </div>
                         </div>
-                        <a href="https://www.instagram.com/reel/DYC7ioSyjci/?igsh=M3V2dmwwdjFpMXVh" target="_blank" class="btn-primary btn-project">Watch Project</a>
+                        <a href="https://www.instagram.com/reel/DYC7ioSyjci/?igsh=M3V2dmwwdjFpMXVh" target="_blank" class="btn-primary btn-project">Watch</a>
                     </div>
                 </div>
 
                 <!-- Project 4 -->
                 <div class="project-card">
                     <a href="https://www.instagram.com/reel/DZ-A10gy8tX/?igsh=MWNpNXl0eDJmMHR5aA==" target="_blank" class="thumbnail-wrapper">
-                        <img src="images/1000263995.jpg" alt="WhatsApp CEO Discussion Thumbnail" class="project-thumbnail">
+                        <img src="images/mumbai local train.png" alt="Mumbai Train Murder Thumbnail" class="project-thumbnail">
                     </a>
                     <div class="project-content">
-                        <span class="project-category">Technology & Business</span>
+                        <span class="project-category">Crime News / Social Issues</span>
                         <a href="https://www.instagram.com/reel/DZ-A10gy8tX/?igsh=MWNpNXl0eDJmMHR5aA==" target="_blank" class="project-title-link">
-                            <h3 class="project-title">WhatsApp CEO Discussion</h3>
+                            <h3 class="project-title">Mumbai Train Murder Case Explained</h3>
                         </a>
-                        <p class="project-desc">Developed an informative video discussing leadership changes and trends in the technology industry. Simplified complex topics into engaging short-form content.</p>
+                        <p class="project-desc">Developed an emotionally compelling news thumbnail using layered imagery, expressive portraits, and contrasting colors to emphasize the seriousness of the incident.</p>
                         <div class="project-role-container">
                             <div class="role-label">Roles Executed:</div>
                             <div class="role-tags">
-                                <span class="role-tag">Topic Research</span>
-                                <span class="role-tag">Script Writing</span>
-                                <span class="role-tag">Video Editing</span>
-                                <span class="role-tag">Thumbnail Design</span>
+                                <span class="role-tag">Thumbnail Designer</span>
+                                <span class="role-tag">Visual Storytelling</span>
+                                <span class="role-tag">Image Compositing</span>
                             </div>
                         </div>
-                        <a href="https://www.instagram.com/reel/DZ-A10gy8tX/?igsh=MWNpNXl0eDJmMHR5aA==" target="_blank" class="btn-primary btn-project">Watch Project</a>
+                        <a href="https://www.instagram.com/reel/DZ-A10gy8tX/?igsh=MWNpNXl0eDJmMHR5aA==" target="_blank" class="btn-primary btn-project">Watch</a>
                     </div>
                 </div>
 
                 <!-- Project 5 -->
                 <div class="project-card">
                     <a href="https://www.instagram.com/reel/DY3q70xIBC1/?igsh=cGg5NmpvNGxsaGJv" target="_blank" class="thumbnail-wrapper">
-                        <img src="images/1000263998.jpg" alt="Vaibhav Suryavanshi IPL Record Thumbnail" class="project-thumbnail">
+                        <img src="images/amit shah fcra.png" alt="FCRA 2.0 Thumbnail" class="project-thumbnail">
                     </a>
                     <div class="project-content">
-                        <span class="project-category">Cricket & Sports Analysis</span>
+                        <span class="project-category">Government Policy / News</span>
                         <a href="https://www.instagram.com/reel/DY3q70xIBC1/?igsh=cGg5NmpvNGxsaGJv" target="_blank" class="project-title-link">
-                            <h3 class="project-title">Vaibhav Suryavanshi IPL Record</h3>
+                            <h3 class="project-title">FCRA 2.0 Portal Launch Explained</h3>
                         </a>
-                        <p class="project-desc">Created a sports-focused video highlighting emerging cricket talent and record-breaking performances. Used statistics, storytelling, and visual elements to maximize engagement.</p>
+                        <p class="project-desc">Designed an informative thumbnail covering the launch of the FCRA 2.0 Portal with a clean government-news aesthetic, integrating official visuals and bold text for clarity.</p>
                         <div class="project-role-container">
                             <div class="role-label">Roles Executed:</div>
                             <div class="role-tags">
-                                <span class="role-tag">Sports Research</span>
-                                <span class="role-tag">Script Writing</span>
-                                <span class="role-tag">Video Editing</span>
-                                <span class="role-tag">Thumbnail Design</span>
+                                <span class="role-tag">Thumbnail Designer</span>
+                                <span class="role-tag">Information Layout</span>
+                                <span class="role-tag">Typography Design</span>
                             </div>
                         </div>
-                        <a href="https://www.instagram.com/reel/DY3q70xIBC1/?igsh=cGg5NmpvNGxsaGJv" target="_blank" class="btn-primary btn-project">Watch Project</a>
+                        <a href="https://www.instagram.com/reel/DY3q70xIBC1/?igsh=cGg5NmpvNGxsaGJv" target="_blank" class="btn-primary btn-project">Watch</a>
                     </div>
                 </div>
 
                 <!-- Project 6 -->
                 <div class="project-card">
                     <a href="https://www.instagram.com/reel/DZhEEY_STy0/?igsh=d3h0dHFoeXQwYzRo" target="_blank" class="thumbnail-wrapper">
-                        <img src="images/1000264000.jpg" alt="India C-295 Aircraft Program Thumbnail" class="project-thumbnail">
+                        <img src="images/1000264000.jpg" alt="Pyramids Thumbnail" class="project-thumbnail">
                     </a>
                     <div class="project-content">
                         <span class="project-category">Defence & Aviation / Tech / Affairs</span>
@@ -861,7 +963,7 @@
                                 <span class="role-tag">Content Strategy</span>
                             </div>
                         </div>
-                        <a href="https://www.instagram.com/reel/DZhEEY_STy0/?igsh=d3h0dHFoeXQwYzRo" target="_blank" class="btn-primary btn-project">Watch Project</a>
+                        <a href="https://www.instagram.com/reel/DZhEEY_STy0/?igsh=d3h0dHFoeXQwYzRo" target="_blank" class="btn-primary btn-project">Watch</a>
                     </div>
                 </div>
 
@@ -882,11 +984,11 @@
                     </div>
                     <div class="timeline-body">
                         <ul>
-                            <li>Created and published 91+ original Instagram Reels covering diverse high-engagement, conversion-focused topics.</li>
-                            <li>Produced timely content architecture covering intense macroeconomic adjustments, breaking news ecosystems, political developments, and critical athletic performance events.</li>
-                            <li>Designed dedicated community campaigns for stray animal welfare initiatives (Nishulk Pashu Asarya), resulting in direct civic engagement and highly targeted organic visibility.</li>
-                            <li>Engineered the total content operation completely independently: sourced domain metrics, prepared scripts, calibrated on-camera visibility, mixed live voice-over, and calibrated technical post-production editing parameters.</li>
-                            <li>Monitored short-form media algorithm indicators and systemic real-time news breakouts to output contextually relevant media structures instantly during hot breaking news windows.</li>
+                            <li>Created and published 91+ original Instagram Reels covering diverse high-engagement, conversion-focused topics[cite: 1].</li>
+                            <li>Produced timely content architecture covering intense macroeconomic adjustments, breaking news ecosystems, political developments, and critical athletic performance events[cite: 1].</li>
+                            <li>Designed dedicated community campaigns for stray animal welfare initiatives (Nishulk Pashu Asarya), resulting in direct civic engagement and highly targeted organic visibility[cite: 1].</li>
+                            <li>Engineered the total content operation completely independently: sourced domain metrics, prepared scripts, calibrated on-camera visibility, mixed live voice-over, and calibrated technical post-production editing parameters[cite: 1].</li>
+                            <li>Monitored short-form media algorithm indicators and systemic real-time news breakouts to output contextually relevant media structures instantly during hot breaking news windows[cite: 1].</li>
                         </ul>
                     </div>
                 </div>
@@ -901,15 +1003,15 @@
             <div class="achievements-list">
                 <div class="achievement-card">
                     <div class="achievement-stat">91+</div>
-                    <div class="achievement-text">Original high-retention Instagram Reels produced, published, and cataloged.</div>
+                    <div class="achievement-text">Original high-retention Instagram Reels produced, published, and cataloged[cite: 1].</div>
                 </div>
                 <div class="achievement-card">
                     <div class="achievement-stat">100%</div>
-                    <div class="achievement-text">Self-contained pipeline execution—zero dependency on external outsourcing, voice actors, or third-party editors.</div>
+                    <div class="achievement-text">Self-contained pipeline execution—zero dependency on external outsourcing, voice actors, or third-party editors[cite: 1].</div>
                 </div>
                 <div class="achievement-card">
                     <div class="achievement-stat">0-Lag</div>
-                    <div class="achievement-text">Rapid-turnaround engineering designed to publish accurate content during fluid breaking news trends.</div>
+                    <div class="achievement-text">Rapid-turnaround engineering designed to publish accurate content during fluid breaking news trends[cite: 1].</div>
                 </div>
             </div>
         </div>
@@ -922,7 +1024,7 @@
             <div class="contact-grid">
                 <div class="contact-info-panel">
                     <h3>Let's build something impactful.</h3>
-                    <p class="contact-p">Available for comprehensive full-time positions, strategic brand collaborations, freelance technical video architecture, and social management roles.</p>
+                    <p class="contact-p">Available for comprehensive full-time positions, strategic brand collaborations, freelance technical video architecture, and social management roles[cite: 1].</p>
                     <div class="contact-details">
                         <div class="contact-item">
                             <div>
@@ -947,6 +1049,25 @@
             </div>
         </div>
     </section>
+
+    <!-- INTERACTIVE TOGGLE JAVASCRIPT -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinksContainer = document.getElementById('nav-links-container');
+        const navLinks = document.querySelectorAll('#nav-links-container a');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navLinksContainer.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+            });
+        });
+    </script>
 
 </body>
 </html>
