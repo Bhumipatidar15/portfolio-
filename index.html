@@ -311,7 +311,7 @@
             font-weight: bold;
         }
 
-        /* --- CURRENT STATUS SECTION --- */
+        /* --- CURRENT STATUS SECTION (FIXED FOR PROPER MOBILE ALIGNMENT) --- */
         .status-visuals-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -323,7 +323,10 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             overflow: hidden;
-            height: 280px;
+            position: relative;
+            width: 100%;
+            /* Aspect ratio based scaling forces layout to stay exactly identical on all mobile phones */
+            aspect-ratio: 3 / 4; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -331,9 +334,9 @@
         }
 
         .status-visual-card img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Changed to cover to ensure image occupies full responsive card spaces elegantly */
         }
 
         /* --- SOCIAL DASHBOARDS SECTION --- */
@@ -360,7 +363,6 @@
 
         .dashboard-img-wrapper {
             width: 100%;
-            height: 420px;
             border-radius: 8px;
             overflow: hidden;
             background: #070a10;
@@ -368,11 +370,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            aspect-ratio: 4 / 3;
         }
 
         .dashboard-img {
-            max-width: 100%;
-            max-height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             display: block;
         }
@@ -638,13 +641,17 @@
                 grid-template-columns: 1fr;
             }
             .dashboard-img-wrapper {
-                height: 320px;
+                aspect-ratio: 16 / 10;
             }
+            
+            /* Sizing Fixes across smaller handheld resolutions */
             .status-visuals-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
             }
             .status-visual-card {
-                height: 200px;
+                aspect-ratio: 3 / 4 !important;
+                height: auto !important;
             }
         }
 
@@ -698,7 +705,7 @@
             </button>
 
             <div class="nav-links" id="nav-links-container">
-                <a href="#hero">Portfolio</a> <!-- Clicking here takes to top/main start layout -->
+                <a href="#hero">Portfolio</a>
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
                 <a href="#my-work">My Work</a>
@@ -823,7 +830,7 @@
     <!-- MY WORK PORTFOLIO GRID -->
     <section id="portfolio">
         <div class="container" id="my-work">
-            <h2 class="section-title">My <span class="accent-text">Work</span></h2> <!-- Headline has been parsed strictly as requested -->
+            <h2 class="section-title">My <span class="accent-text">Work</span></h2>
             <div class="portfolio-grid">
                 
                 <!-- Project 1 -->
@@ -947,20 +954,17 @@
                         <img src="images/1000264000.jpg" alt="Pyramids Thumbnail" class="project-thumbnail">
                     </a>
                     <div class="project-content">
-                        <span class="project-category">Defence & Aviation / Tech / Affairs</span>
+                        <span class="project-category">Movie Review / Entertainment</span>
                         <a href="https://www.instagram.com/reel/DZhEEY_STy0/?igsh=d3h0dHFoeXQwYzRo" target="_blank" class="project-title-link">
-                            <h3 class="project-title">India C-295 Aircraft Program</h3>
+                            <h3 class="project-title">Pyramids Performance Review</h3>
                         </a>
-                        <p class="project-desc">Created an informative short-form video explaining India's C-295 aircraft program and the role of Tata-Airbus in strengthening domestic aircraft manufacturing. The content focused on India's growing defence capabilities, aerospace innovation, and the significance of indigenous production.</p>
+                        <p class="project-desc">Created a cinematic YouTube thumbnail for a movie review featuring dramatic character placement, bold typography, and color grading to enhance curiosity and click-through rate.</p>
                         <div class="project-role-container">
                             <div class="role-label">Roles Executed:</div>
                             <div class="role-tags">
-                                <span class="role-tag">Topic Research</span>
-                                <span class="role-tag">Fact Verification</span>
-                                <span class="role-tag">Script Writing</span>
-                                <span class="role-tag">Video Editing</span>
-                                <span class="role-tag">Thumbnail Design</span>
-                                <span class="role-tag">Content Strategy</span>
+                                <span class="role-tag">Thumbnail Designer</span>
+                                <span class="role-tag">Creative Direction</span>
+                                <span class="role-tag">Photo Manipulation</span>
                             </div>
                         </div>
                         <a href="https://www.instagram.com/reel/DZhEEY_STy0/?igsh=d3h0dHFoeXQwYzRo" target="_blank" class="btn-primary btn-project">Watch</a>
